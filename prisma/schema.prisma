@@ -1,0 +1,30 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id               String        @id @default(uuid())
+  name             String
+  email            String        @unique
+  password         String
+  registrationDate DateTime      @default(now())
+  performance      Performance[]
+   username String?  // opcional
+  position String?  // opcional
+}
+
+model Performance {
+  id             String   @id @default(uuid())
+  userId         String
+  date           DateTime @default(now())
+  shotsMade      Int
+  shotsAttempted Int
+  user           User     @relation(fields: [userId], references: [id])
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt()
+}
