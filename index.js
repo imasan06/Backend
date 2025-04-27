@@ -1,14 +1,27 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import { PrismaClient } from "@prisma/client";
 
 dotenv.config();
 
 const app = express();
-const prisma = new PrismaClient();
 
-app.use(cors());
+// CORS configurado a medida
+app.use(cors({
+  origin: process.env.FRONTEND_URL,          // ej. "https://proyects-jeuv.vercel.app"
+  methods: ["GET","POST","PUT","DELETE","OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true                           // si usas cookies o auth 
+}));
+
+// Asegura que OPTIONS nunca redirija ni caiga en otro handler
+app.options("*", cors({
+  origin: process.env.FRONTEND_URL,
+  methods: ["GET","POST","PUT","DELETE","OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true
+}));
+
 app.use(express.json());
 
 // Rutas
