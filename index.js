@@ -4,6 +4,20 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
+
+// Opcional: verifica la conexión al arrancar
+prisma
+  .$connect()
+  .then(() => console.log("✅ Conectado a la base de datos"))
+  .catch((e) => {
+    console.error("❌ Error conectando a la base de datos", e);
+    process.exit(1);
+  });
+
+
 const app = express();
 
 // CORS configurado a medida
@@ -32,3 +46,7 @@ app.use("/api/performance", performanceRouter);
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+process.on("SIGINT", async () => {
+  await prisma.$disconnect();
+  process.exit(0);
+});
