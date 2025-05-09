@@ -14,7 +14,6 @@ app.use(cors({
   credentials: true                           // si usas cookies o auth 
 }));
 
-// Asegura que OPTIONS nunca redirija ni caiga en otro handler
 app.options("*", cors({
   origin: process.env.FRONTEND_URL,
   methods: ["GET","POST","PUT","DELETE","OPTIONS"],
