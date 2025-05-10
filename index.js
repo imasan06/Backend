@@ -19,7 +19,7 @@ const app = express();
 
 // Configura CORS con la URL del frontend (usa process.env.FRONTEND_URL si quieres mantenerlo en Vercel)
 app.use(cors({
-  origin: process.env.FRONTEND_URL || "https://proyects-jeuv.vercel.app",
+  origin: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true
