@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npx prisma migrate deploy && npx prisma generate && node index.js",
+    "resolve:migration": "npx prisma migrate resolve --applied \"20250416115059_add_username_position\"",
     "dev": "nodemon index.js"
   },
   "keywords": [],
