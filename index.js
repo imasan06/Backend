@@ -22,7 +22,7 @@ const app = express();
 
 // CORS configurado a medida
 app.use(cors({
-  origin: 'https://proyects-jeuv-2eqdp4rqo-imanolsan65-gmailcoms-projects.vercel.app',          // ej. "https://proyects-jeuv.vercel.app"
+  origin: true,          // ej. "https://proyects-jeuv.vercel.app"
   methods: ["GET","POST","PUT","DELETE","OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true                           // si usas cookies o auth 
