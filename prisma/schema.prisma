@@ -14,8 +14,7 @@ model User {
   password         String
   registrationDate DateTime      @default(now())
   performance      Performance[]
-   username String?  // opcional
-  position String?  // opcional
+
 }
 
 model Performance {
